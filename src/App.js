@@ -1,24 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import {  BrowserRouter as Router,
+  Route,
+  Routes,} from 'react-router-dom'
+import Home from './pages/home/Home';
+import Order from './pages/order/Order';
+import Cart from './pages/cart/Cart';
+import Dashboard from './pages/admin/dashboard/Dashboard';
+import NoPage from './pages/nopage/NoPage';
+import MyState from './context/myState';
+import Login from './pages/registration/Login';
+import Signup from './pages/registration/Signup';
+import ProductInfo from './pages/productInfo/ProductInfo';
+import AddProduct from './pages/admin/page/AddProduct';
+import UpdateProduct from './pages/admin/page/UpdateProduct';
+import { ToastContainer} from 'react-toastify';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MyState>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/order' element={<Order/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
+        <Route path='*' element={<NoPage/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
+        <Route path="/productinfo/:id" element={<ProductInfo/>}/>
+        <Route path="/addproduct" element={<AddProduct/>}/>
+        <Route path="/updateproduct" element={<UpdateProduct/>}/>
+
+      </Routes>
+      <ToastContainer/>
+    </Router>
+    </MyState>
   );
 }
 
